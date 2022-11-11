@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<title>This is profile page</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="container responsive">
+			<div class="card ">
+				<div class="card-body">
+
+					<div class="container text-center">
+						<img style="height: 200px; width: 200px;" class="my_profile_pic"
+							th:src="@{'/img/'+${user.imageUrl}}" alt="profile photo">
+					</div>
+
+					<h1 class="text-center">
+						<span th:text="${user.name}"></span>
+					</h1>
+					<table class="table table-stripped">
+
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">USERID</th>
+								<th scope="col">SCMUSER-<span th:text="${user.id}"></span></th>
+							</tr>
+							<tr>
+								<th scope="col">USER-EMAIL-ID</th>
+								<th scope="col"><span th:text="${user.email}"></span></th>
+							</tr>
+							<tr>
+								<th scope="col">USER-ABOUT</th>
+								<th scope="col"><span th:text="${user.about}"></span></th>
+							</tr>
+							<tr>
+								<th scope="col">USER-ROLE</th>
+								<th scope="col"><span th:text="${user.role}"></span></th>
+							</tr>
+							<tr>
+								<th scope="col">ACCOUNT-STATUS</th>
+								<th scope="col"><span th:text="${user.enabled}"></span></th>
+							</tr>
+						</thead>
+					</table>
+					<form method="post" th:action="@{'/user/edit-user/'+${user.id}}">
+						<button class="btn btn-primary" th:href="@{'/user/edit-user/'+${user.id}}"
+							type="submit">Update</button>
+						<a class="btn btn-danger mt-1" th:href="@{'/user/delete-user/'+${user.id}}"
+							onclick="return confirmDelete()" type="button">Delete</a>
+					</form>
+
+
+				</div>
+
+			</div>
+
+		</div>
+		<script>
+			$(document).ready(() => {
+				$(".item").removeClass("active");
+				$("#userProfile").addClass("active");
+			});
+		</script>
+	</section>
+
+
+</body>
+
+</html>

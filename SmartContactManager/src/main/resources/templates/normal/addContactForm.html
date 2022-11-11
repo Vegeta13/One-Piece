@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Add Contact form</title>
+</head>
+
+<body>
+	<section>
+		<!-- enctype="multipart/form-data" -->
+		<div class="responsive">
+			<div class="card mr-4">
+				<div class="card-body">
+					<h1 class="text-center">Add Contact</h1>
+					<div class="container-fluid mt-1">
+						<div class="row">
+							<div class="col-md-8 offset-md-2">
+
+								<form action="#" th:object="${contact}" th:action="@{/user/process-contacts}"
+									enctype="multipart/form-data" method="POST">
+
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa fa-plus"></i>
+											</div>
+										</div>
+										<input type="text" id="firstName" name="name" class="form-control"
+											placeholder="Enter your Name" required>
+									</div>
+									<div class="input-group mt-2">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa fa-user"></i>
+											</div>
+										</div>
+										<input type="text" id="secondName" name="secondName" class="form-control"
+											placeholder="Enter your Second Name" required>
+									</div>
+									<div class="input-group mt-2">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa fa-phone"></i>
+											</div>
+										</div>
+										<input type="text" id="phone" name="phone" class="form-control"
+											placeholder="0000000000" maxlength="10" required>
+									</div>
+									<div class="input-group mt-2">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa fa-envelope"></i>
+											</div>
+										</div>
+										<input type="email" id="email" name="email" class="form-control"
+											placeholder="name@gmail.com" required>
+									</div>
+									<div class="input-group mt-2">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa fa-briefcase"></i>
+											</div>
+										</div>
+										<input type="text" id="work" name="work" class="form-control"
+											placeholder="Enter your work" required>
+									</div>
+									<div class="input-group mt-2">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa fa-comment"></i>
+											</div>
+										</div>
+										<textarea id="description" name="description" class="form-control" rows="3"
+											placeholder="Write about yourself" required></textarea>
+									</div>
+									<div class="custom-file mt-2">
+										<input type="file" class="form-control-file" id="image" name="profileImage">
+									</div>
+									<div class="container text-center">
+										<button class="btn btn-primary" type="submit">Save</button>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>  -->
+
+		<script>
+			$(document).ready(() => {
+				$(".item").removeClass("active");
+				$("#addContact").addClass("active");
+			});
+		</script>
+	</section>
+
+
+</body>
+
+</html>

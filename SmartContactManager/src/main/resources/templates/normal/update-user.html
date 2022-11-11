@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<title>This is home page</title>
+</head>
+
+<body>
+	<section>
+		<div class="container reponsive">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card">
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert"
+							role="alert">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+
+						<h1 class="text-center">Update here!!</h1>
+
+						<form class="needs-validation" novalidate action="" th:action="@{/user/user-process-update}"
+							th:method="post" th:object="${user}">
+
+							<div class="form-group">
+								<label for="exampleFormControlInput1">Name</label> <input id="name_field" name="name"
+									type="text" class="form-control "
+									th:classappend="${#fields.hasErrors('name') ? ' is-invalid ' : ' ' }"
+									placeholder="Your Fullname" required th:value="${user.name}" />
+
+								<div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email_field">Email Id</label> <input name="email" type="email"
+									class="form-control" id="email_field" placeholder="anonymous@gmail.com" required
+									th:value="${user.email}">
+								<div class="invalid-feedback">Please provide a valid Email
+									Id.</div>
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlInput1">About</label>
+								<textarea name="about" rows="5" placeholder="Enter your info" required
+									class="form-control" id="about_field" th:text="${user.about}">
+									</textarea>
+							</div>
+
+							<div class="form-check text-center">
+								<input name="agreement" type="checkbox" class="form-check-input" id="agreement_field"
+									required> <label class="form-check-label" for="agreement">Accept terms
+									and conditions</label>
+							</div>
+
+							<div class="container text-center">
+								<button class="btn btn-primary" type="submit">Save</button>
+								<a class="btn btn-danger" href="http://localhost:8080/signup">Reset</a>
+							</div>
+
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+</body>
+
+</html>
